@@ -1,0 +1,19 @@
+/* To apply changes reload browser with cmd + option + r */
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h1 {
+    padding-bottom: 3%;
+}

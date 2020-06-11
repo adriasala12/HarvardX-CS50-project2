@@ -1,22 +1,26 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
         <title>Project 2 - Messaging Website</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
             crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
+
     </head>
-    <body style="background-color:#000000">
-        <h1 class="text-white">Welcome to Project2 Messenger Web Application!</h1>
+    <body style="background-color:#111111">
+
+        <h1 class="text-white center">Welcome to Project2 Messenger Web Application!</h1>
+
         <form>
-            <div class="form-group col-6">
+            <div class="form-group">
                 <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name here" autocomplete="false">
                 <br>
-                <button class="btn btn-light">Log In</button>
+                <button class="btn btn-light btn-lg">Log In</button>
             </div>
         </form>
+
     </body>
 </html>
