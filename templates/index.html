@@ -14,7 +14,7 @@
 
         <h1 class="text-white center">Welcome to Project2 Messenger Web Application!</h1>
 
-        <form>
+        <form action="{{ url_for('home') }}" method="post">
             <div class="form-group">
                 <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name here" autocomplete="false">
                 <br>
