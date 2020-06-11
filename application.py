@@ -15,4 +15,4 @@ def index():
 @app.route("/home", methods=["POST"])
 def home():
     name = request.form.get("name")
-    return render_template("home.html")
+    return render_template("home.html", name=name)
