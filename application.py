@@ -12,7 +12,7 @@ socketio = SocketIO(app)
 def index():
     return render_template("index.html")
 
-@app.route("home")
+@app.route("/home", methods=["POST"])
 def home():
     name = request.form.get("name")
     return render_template("home.html")
