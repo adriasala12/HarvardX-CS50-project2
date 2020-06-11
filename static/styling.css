@@ -16,4 +16,9 @@ body {
 
 h1 {
     padding-bottom: 3%;
+    margin: 5%
+}
+
+form {
+    margin: 5%;
 }
