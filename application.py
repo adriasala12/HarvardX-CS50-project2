@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_socketio import SocketIO, emit
 #from flask_session import Session
 
@@ -17,11 +17,15 @@ app.secret_key = 'asr'
 @app.route("/")
 def index():
     if 'name' in session:
-        return render_template("home.html", name=session['name'])
+        return redirect(url_for('home'))
     else:
         return render_template("index.html")
 
-@app.route("/home", methods=["POST"])
+@app.route("/home", methods=["POST", "GET"])
 def home():
-    session['name'] = request.form.get("name")
-    return render_template("home.html", name=session['name'])
+    if request.method == "GET":
+        if 'name' in session:
+            return render_template("home.html", name=session['name'])
+    else:
+        session['name'] = request.form.get("name")
+        return render_template("home.html", name=session['name'])
