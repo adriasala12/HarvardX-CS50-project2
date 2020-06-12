@@ -12,6 +12,7 @@ html {
 body {
     display: table-cell;
     vertical-align: middle;
+    background-color: #111111;
 }
 
 h1 {
