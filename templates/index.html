@@ -9,6 +9,18 @@
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
             crossorigin="anonymous">
 
+        <script>
+
+            document.querySelector('#field').onkeyup = () => {
+                if (document.querySelector('#field').value.length > 0):
+                    document.querySelector('#submit').disabled = false;
+                else:
+                    document.querySelector('#submit').disabled = true;
+            };
+            
+        </script>
+
+
     </head>
     <body style="background-color:#111111">
 
@@ -16,9 +28,9 @@
 
         <form action="{{ url_for('home') }}" method="post">
             <div class="form-group">
-                <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name here" autocomplete="false">
+                <input id="field" class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name here" autocomplete="false">
                 <br>
-                <button class="btn btn-light btn-lg">Log In</button>
+                <button id="submit" class="btn btn-light btn-lg">Log In</button>
             </div>
         </form>
 
