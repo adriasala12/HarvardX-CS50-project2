@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
@@ -43,8 +43,9 @@ def addChannel():
 
     if request.method == "POST":
         channels = session['channels']
+
         channels.append(channelName)
         session['channels'] = channels
-        print(session["channels"])
+        # print(session["channels"])
 
     return redirect(url_for('home'))

@@ -1,4 +1,21 @@
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.querySelector("#theForm").onsubmit = () => {
+//         const request = new XMLHttpRequest();
+//         request.open('POST', '/addChannel')
+//
+//         request.onload() = () => {
+//             if request.responseText != null {
+//                 alert("This name is already in use.")
+//             }
+//         }
+//
+//         request.send();
+//         return false;
+//     };
+// });
+
+
 
 function addRow() {
 
@@ -45,7 +62,7 @@ function addRow() {
 }
 
 function addChannel() {
-
+    console.log("hello");
     document.getElementById('x').remove();
     document.getElementById('create').disabled = false;
 }
