@@ -37,20 +37,14 @@ def logout():
 @app.route("/addChannel", methods=["POST"])
 def addChannel():
     channelName = request.form.get("fname")
-    # print("------------------")
-    # print(channelName)
-    # print("------------------")
+
     if session.get("channels") is None:
         session["channels"] = []
+
     if request.method == "POST":
-        # session["channels"].insert(0, channelName)
-        # print("------------------")
-        # print(session["channels"])
-        # print("------------------")
         channels = session['channels']
         channels.append(channelName)
         session['channels'] = channels
         print(session["channels"])
 
-    #return render_template("home.html", name=session['name'], channels=session['channels'])
     return redirect(url_for('home'))
