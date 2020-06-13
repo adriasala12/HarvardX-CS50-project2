@@ -24,10 +24,7 @@ def index():
 def home():
     if request.method == "GET":
         if 'name' in session:
-            if 'channels' in session:
-                return render_template("home.html", name=session['name'], channels=session['channels'])
-            else:
-                return render_template("home.html", name=session['name'])
+            return render_template("home.html", name=session['name'], channels=session['channels'])
     else:
         session['name'] = request.form.get("name")
         return render_template("home.html", name=session['name'])
@@ -40,6 +37,20 @@ def logout():
 @app.route("/addChannel", methods=["POST"])
 def addChannel():
     channelName = request.form.get("fname")
-    print(channelName)
+    # print("------------------")
+    # print(channelName)
+    # print("------------------")
+    if session.get("channels") is None:
+        session["channels"] = []
+    if request.method == "POST":
+        # session["channels"].insert(0, channelName)
+        # print("------------------")
+        # print(session["channels"])
+        # print("------------------")
+        channels = session['channels']
+        channels.append(channelName)
+        session['channels'] = channels
+        print(session["channels"])
 
+    #return render_template("home.html", name=session['name'], channels=session['channels'])
     return redirect(url_for('home'))

@@ -10,18 +10,6 @@ function addRow() {
     div.className = 'row';
     div.id = "x"
 
-    div.innerHTML = `
-        <!-- <form class="col" action="{{ url_for('addChannel')}}" method="post" style="background-color:blue">
-            <div class="form-group m-5 row">
-                <input name="txt" id="txt" class="col-6 m-1 form-control form-control-lg" type="text" placeholder="Enter your name here" autocomplete="false">
-                <button id="submit" class="m-1 btn btn-light btn-lg" onclick="addChannel()">Add</button>
-            </div>
-        </form> -->
-
-
-
-    `;
-
     document.getElementById('content').appendChild(div);
 
     const form = document.createElement('form');
@@ -29,20 +17,30 @@ function addRow() {
     form.name = "yourForm";
     form.id = "theForm";
     form.method = "post";
+    form.className = "col";
 
     document.getElementById('x').appendChild(form);
+
+    const div2 = document.createElement('div');
+    div2.className = "form-group m-5 row";
+    div2.id = "div2";
+
+    document.getElementById('theForm').appendChild(div2);
 
     const text = document.createElement('input');
     text.type = "text";
     text.name = "fname";
     text.id = "fname";
+    text.className = "col-6 m-1 form-control form-control-lg";
+    text.placeholder = "Enter a name here"
 
     const but = document.createElement('input');
     but.type = "submit";
     but.value = "submit";
+    but.className = "m-1 btn btn-light btn-lg";
 
-    document.getElementById('theForm').appendChild(text);
-    document.getElementById('theForm').appendChild(but);
+    document.getElementById('div2').appendChild(text);
+    document.getElementById('div2').appendChild(but);
 
 }
 
