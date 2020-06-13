@@ -4,17 +4,39 @@
         <meta charset="utf-8">
         <title>Home Page</title>
         <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styling2.css') }}">
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
             crossorigin="anonymous">
+
+        <script src="/static/channels.js"></script>
+
     </head>
 
-    <body>
+    <body style="background-color: #AAAAAA">
 
-        <h1 class="col-9">Welcome, {{ name }}!</h1>
+        <div class="d-flex flex-row justify-content-between" style="background-color:blue">
+            <h1 class="m-5 text-white">Welcome, {{ name }}!</h1>
+            <a href="/logout"><input class="m-5 btn btn-light btn-lg" type=button value="Log Out"></a>
+        </div>
 
-        <a href="/logout" class="col-3"><input type=button value="Log Out"></a>
+        <div class="row mx-auto" style="background-color:red">
+            <input id="create" class="m-5 float-left btn btn-light btn-lg" type="button" value="Add New Channel" onclick="addRow()">
+        </div>
+
+        <div id="content">
+
+        </div>
+
+
+
+        <ul>
+            {% for channel in channels %}
+                <li><button type="button">{{ channel }}</button></li>
+            {% endfor %}
+        </ul>
+
 
     </body>
 </html>

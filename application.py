@@ -12,6 +12,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 app.secret_key = 'asr'
 
+
 @app.route("/")
 def index():
     if 'name' in session:
@@ -23,7 +24,10 @@ def index():
 def home():
     if request.method == "GET":
         if 'name' in session:
-            return render_template("home.html", name=session['name'])
+            if 'channels' in session:
+                return render_template("home.html", name=session['name'], channels=session['channels'])
+            else:
+                return render_template("home.html", name=session['name'])
     else:
         session['name'] = request.form.get("name")
         return render_template("home.html", name=session['name'])
@@ -32,3 +36,10 @@ def home():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+@app.route("/addChannel", methods=["POST"])
+def addChannel():
+    channelName = request.form.get("fname")
+    print(channelName)
+
+    return redirect(url_for('home'))
