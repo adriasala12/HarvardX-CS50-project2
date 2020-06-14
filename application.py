@@ -38,14 +38,15 @@ def logout():
 def addChannel():
     channelName = request.form.get("fname")
 
-    if session.get("channels") is None:
-        session["channels"] = []
+    if channelName != "":
 
-    if request.method == "POST":
-        channels = session['channels']
+        if session.get("channels") is None:
+            session["channels"] = []
 
-        channels.append(channelName)
-        session['channels'] = channels
-        # print(session["channels"])
+        if request.method == "POST":
+            channels = session['channels']
+
+            channels.append(channelName)
+            session['channels'] = channels
 
     return redirect(url_for('home'))

@@ -1,42 +1,19 @@
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     document.querySelector("#theForm").onsubmit = () => {
-//         const request = new XMLHttpRequest();
-//         request.open('POST', '/addChannel')
-//
-//         request.onload() = () => {
-//             if request.responseText != null {
-//                 alert("This name is already in use.")
-//             }
-//         }
-//
-//         request.send();
-//         return false;
-//     };
-// });
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('theForm').onsubmit = () => {
+        // Show empty string alert
+        var name = document.getElementById('fname').value;
+        if (name == "") {
+            alert(`The name cannot be an empty string`);
+        }
+    };
+});
 
 function addRow() {
 
     // We only want to allow to create one channel at the time
     document.getElementById('create').disabled = true;
-
-    const div = document.createElement('div');
-
-    div.className = 'row';
-    div.id = "x"
-
-    document.getElementById('content').appendChild(div);
-
-    const form = document.createElement('form');
-    form.action = "addChannel";
-    form.name = "yourForm";
-    form.id = "theForm";
-    form.method = "post";
-    form.className = "col";
-
-    document.getElementById('x').appendChild(form);
 
     const div2 = document.createElement('div');
     div2.className = "form-group m-5 row";
@@ -63,6 +40,6 @@ function addRow() {
 
 function addChannel() {
     console.log("hello");
-    document.getElementById('x').remove();
+    document.getElementById('theForm').remove();
     document.getElementById('create').disabled = false;
 }
