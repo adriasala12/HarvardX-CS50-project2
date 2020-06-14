@@ -31,14 +31,15 @@
             </form>
         </div>
 
-
-        <ul id="list">
+        <h2 class="m-5 text-white">Channels:</h2>
+        <div class="list-group m-5" style="width:30%">
             {% for channel in channels %}
-                <li><a href="{{ url_for('channel', name=channel) }}">
-                    <input type="button" value="{{channel}}">
-                </a></li>
+                <a href="{{ url_for('channel', name=channel) }}" class="rounded m-1">
+                    <input class="list-group-item list-group-item-action" type="button" value="{{channel}}">
+                </a>
             {% endfor %}
-        </ul>
+        </div>
+
 
 
     </body>

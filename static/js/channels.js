@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function repeatAlert(success) {
-    //var success = success;
     console.log(success);
     if (success == "False") {
         window.alert(`This name is already in use`);
@@ -34,7 +33,8 @@ function addRow() {
     text.name = "fname";
     text.id = "fname";
     text.className = "col-6 m-1 form-control form-control-lg";
-    text.placeholder = "Enter a name here"
+    text.placeholder = "Enter a name here";
+    text.autofocus = true;
 
     const but = document.createElement('input');
     but.type = "submit";
