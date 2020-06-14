@@ -12,9 +12,32 @@
 
         <script src="/static/channels.js"></script>
 
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('theForm').onsubmit = () => {
+
+                    // Show empty string alert
+                    var name = document.getElementById('fname').value;
+                    if (name == "") {
+                        alert(`The name cannot be an empty string`);
+                    }
+                };
+            });
+        </script>
+
+        <script type="text/javascript">
+            function repeatAlert() {
+                var success = '{{ success }}';
+                console.log(success);
+                if (success == "False") {
+                    alert(`This name is already in use`);
+                }
+            }
+        </script>
+
     </head>
 
-    <body style="background-color: #AAAAAA">
+    <body style="background-color: #AAAAAA" onload="repeatAlert()">
 
         <div class="d-flex flex-row justify-content-between" style="background-color:blue">
             <h1 class="m-5 text-white">Welcome, {{ name }}!</h1>

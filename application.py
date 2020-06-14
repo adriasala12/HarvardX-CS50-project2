@@ -12,7 +12,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 app.secret_key = 'asr'
 
-
 @app.route("/")
 def index():
     if 'name' in session:
@@ -22,9 +21,13 @@ def index():
 
 @app.route("/home", methods=["POST", "GET"])
 def home():
+
+    if session.get("success") is None:
+        session['success'] = True;
+
     if request.method == "GET":
         if 'name' in session:
-            return render_template("home.html", name=session['name'], channels=session['channels'])
+            return render_template("home.html", name=session['name'], channels=session['channels'], success=session['success'])
     else:
         session['name'] = request.form.get("name")
         return render_template("home.html", name=session['name'])
@@ -38,15 +41,18 @@ def logout():
 def addChannel():
     channelName = request.form.get("fname")
 
-    if channelName != "":
+    if session.get("channels") is None:
+        session["channels"] = []
 
-        if session.get("channels") is None:
-            session["channels"] = []
+    session['success'] = True
+    channels = session['channels']
 
-        if request.method == "POST":
-            channels = session['channels']
+    if channelName in session['channels']:
+        session['success'] = False
 
-            channels.append(channelName)
-            session['channels'] = channels
+    elif channelName != "" and channelName not in channels:
+        # if request.method == "POST":
+        channels.append(channelName)
+        session['channels'] = channels
 
     return redirect(url_for('home'))

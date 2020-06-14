@@ -2,13 +2,37 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('theForm').onsubmit = () => {
-        // Show empty string alert
-        var name = document.getElementById('fname').value;
-        if (name == "") {
-            alert(`The name cannot be an empty string`);
-        }
+
+        // // Show empty string alert
+        // var name = document.getElementById('fname').value;
+        // if (name == null) {
+        //     alert(`The name cannot be an empty string`);
+        // }
+        //
+        // var success = '{{ success }}';
+        // console.log(success);
+        // if (success == "False") {
+        //     alert(`This name is already in use`);
+        // }
+
     };
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.querySelector("#theForm").onsubmit = () => {
+//         const request = new XMLHttpRequest();
+//         request.open('POST', '/addChannel')
+//
+//         request.onload() = () => {
+//             if request.responseText != null {
+//                 alert("This name is already in use.")
+//             }
+//         }
+//
+//         request.send();
+//         return false;
+//     };
+// });
 
 function addRow() {
 
