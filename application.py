@@ -56,3 +56,12 @@ def addChannel():
         session['channels'] = channels
 
     return redirect(url_for('home'))
+
+
+@app.route("/channel/<string:name>")
+def channel(name):
+    if session.get('{name}') is None:
+        session['{name}'] = ['test message']
+
+    print(session['{name}'])
+    return render_template('channel.html', name=name)

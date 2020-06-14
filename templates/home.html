@@ -34,7 +34,9 @@
 
         <ul id="list">
             {% for channel in channels %}
-                <li><button type="button">{{ channel }}</button></li>
+                <li><a href="{{ url_for('channel', name=channel) }}">
+                    <input type="button" value="{{channel}}">
+                </a></li>
             {% endfor %}
         </ul>
 
