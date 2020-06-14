@@ -14,14 +14,14 @@
 
     </head>
 
-    <body style="background-color: #AAAAAA" onload="repeatAlert('{{success}}')">
+    <body style="background-color: #111111" onload="repeatAlert('{{success}}')">
 
-        <div class="d-flex flex-row justify-content-between" style="background-color:blue">
+        <div class="d-flex flex-row justify-content-between">
             <h1 class="m-5 text-white">Welcome, {{ name }}!</h1>
             <a href="/logout"><input class="m-5 btn btn-light btn-lg" type=button value="Log Out"></a>
         </div>
 
-        <div class="row mx-auto" style="background-color:red">
+        <div class="row mx-auto">
             <input id="create" class="m-5 float-left btn btn-light btn-lg" type="button" value="Add New Channel" onclick="addRow()">
         </div>
 
