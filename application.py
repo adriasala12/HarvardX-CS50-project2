@@ -19,12 +19,16 @@ d = {}
 @app.route("/")
 def index():
     if 'name' in session:
-        return redirect(url_for('home'))
+        if session.get('currentChannel') is None:
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('channel', channel=session.get('currentChannel')))
     else:
         return render_template("index.html")
 
 @app.route("/home", methods=["POST", "GET"])
 def home():
+    session['currentChannel'] = None
     if session.get("success") is None:
         session['success'] = True;
 
