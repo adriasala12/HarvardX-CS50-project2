@@ -75,7 +75,7 @@ def message(data):
     time = datetime.datetime.now().strftime("%x-%X")
 
     if channel not in d.keys():
-        d[channel] = [{'message': message, 'author': session['name'], 'time': time}]
+        d[channel] = deque([{'message': message, 'author': session['name'], 'time': time}], 100)
     else:
         d[channel].append({'message': message, 'author': session['name'], 'time': time})
 
