@@ -47,7 +47,6 @@ function addRow() {
 }
 
 function addChannel() {
-    console.log("hello");
     document.getElementById('theForm').remove();
     document.getElementById('create').disabled = false;
 }
