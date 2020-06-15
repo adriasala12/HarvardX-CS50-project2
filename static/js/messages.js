@@ -24,3 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// Send message on return key
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('messageInput').onkeyup = () => {
+
+        if (event.keyCode === 13) {
+            document.getElementById('send').click()
+            document.getElementById('messageInput').value = null;
+        }
+    };
+});
