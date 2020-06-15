@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ul = document.getElementById('chat');
         const li = document.createElement('li');
         li.style = "color: white"
-        li.innerHTML = `Message: ${data.message}`;
+        li.innerHTML = `(${data.time}) ${data.author}: ${data.message}`;
         document.getElementById('chat').appendChild(li);
     });
 

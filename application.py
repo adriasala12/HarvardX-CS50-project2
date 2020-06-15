@@ -3,6 +3,7 @@ import requests
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from flask_socketio import SocketIO, emit
 from collections import deque
+import datetime
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -22,7 +23,7 @@ def index():
 
 @app.route("/home", methods=["POST", "GET"])
 def home():
-
+    print(session)
     if session.get("success") is None:
         session['success'] = True;
 
@@ -59,23 +60,33 @@ def addChannel():
     return redirect(url_for('home'))
 
 #d = deque([], 100)
-@app.route("/channel/<string:channel>", methods=["GET"])
+@app.route("/channel/<string:channel>", methods=["GET", "POST"])
 def channel(channel):
-    # if session.get(channel) is None:
-    #     session[channel] = channel
+    if session.get(channel) is None:
+        print(f"There was no channel named {channel}")
+        print(f"New empty channel created with name {channel}")
+        session[channel] = []
+
     session['currentChannel'] = channel
-    return render_template('channel.html', channel=channel)
+
+    messages = session.get(channel)
+    print(f"Messages: {messages}")
+
+    return render_template('channel.html', channel=channel, messages=messages)
 
 @socketio.on("submit message")
 def message(data):
     channel = session['currentChannel']
     message = data['message']
+    time = datetime.datetime.now().strftime("%x-%X")
+    # if session.get(channel) is None:
+    #     session[channel] = []
 
-    if session.get(channel) is None:
-        #session[channel] =
-
-
-    emit("announce message", {'message': message, 'author': session['name']}, broadcast=True)
+    messages = session[channel]
+    messages.append({'message': message, 'author': session['name'], 'time': time})
+    session[channel] = messages
+    print(session)
+    emit("announce message", {'message': message, 'author': session['name'], 'time': time}, broadcast=True)
 
 
 if __name__ == '__main__':
