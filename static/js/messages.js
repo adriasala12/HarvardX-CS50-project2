@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         li.style = "color: white"
         li.innerHTML = `(${data.time}) ${data.author}: ${data.message}`;
         document.getElementById('chat').appendChild(li);
+
+        const lis = document.getElementsByTagName('li')
+        if (lis.length > 100) {
+            lis[0].remove()
+        }
     });
 
 });
