@@ -85,6 +85,14 @@ def message(data):
 
     emit("announce message", {'message': message, 'author': session['name'], 'time': time}, broadcast=True)
 
+@app.route("/removeChannel/<string:channel>")
+def removeChannel(channel):
+    d.pop(channel, None)
+    channels = session['channels']
+    channels.remove(channel)
+    session['channels'] = channels
+
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     socketio.run(app)

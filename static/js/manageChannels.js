@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function repeatAlert(success) {
-    console.log(success);
     if (success == "False") {
         window.alert(`This name is already in use`);
     }
