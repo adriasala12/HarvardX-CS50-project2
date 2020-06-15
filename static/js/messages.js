@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('connect', () => {
         let button = document.getElementById('send');
         button.onclick = () => {
-            console.log("Submitted message");
             const message = document.getElementById('messageInput').value;
-            socket.emit('submit message', {'message': message})
+            if (message != "") {
+                socket.emit('submit message', {'message': message})
+            }
         };
     });
 
