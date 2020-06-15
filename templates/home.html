@@ -34,7 +34,7 @@
         <h2 class="m-5 text-white">Channels:</h2>
         <div class="list-group m-5" style="width:30%">
             {% for channel in channels %}
-                <a href="{{ url_for('channel', name=channel) }}" class="rounded m-1">
+                <a href="{{ url_for('channel', channel=channel) }}" class="rounded m-1">
                     <input class="list-group-item list-group-item-action" type="button" value="{{channel}}">
                 </a>
             {% endfor %}

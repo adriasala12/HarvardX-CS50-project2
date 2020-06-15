@@ -1,7 +1,8 @@
 import os
-
+import requests
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from flask_socketio import SocketIO, emit
+from collections import deque
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -57,11 +58,20 @@ def addChannel():
 
     return redirect(url_for('home'))
 
+#d = deque([], 100)
+@app.route("/channel/<string:channel>", methods=["GET"])
+def channel(channel):
+    if session.get('{channel}') is None:
+        session['{channel}'] = channel
 
-@app.route("/channel/<string:name>")
-def channel(name):
-    if session.get('{name}') is None:
-        session['{name}'] = ['test message']
+    return render_template('channel.html', channel=channel)
 
-    print(session['{name}'])
-    return render_template('channel.html', name=name)
+@socketio.on("submit message")
+def message(data):
+    message = data['message']
+    print(message)
+    emit("announce message", {'message': message, 'author':session['name']}, broadcast=True)
+
+
+if __name__ == '__main__':
+    socketio.run(app)
