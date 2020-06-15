@@ -61,16 +61,21 @@ def addChannel():
 #d = deque([], 100)
 @app.route("/channel/<string:channel>", methods=["GET"])
 def channel(channel):
-    if session.get('{channel}') is None:
-        session['{channel}'] = channel
-
+    # if session.get(channel) is None:
+    #     session[channel] = channel
+    session['currentChannel'] = channel
     return render_template('channel.html', channel=channel)
 
 @socketio.on("submit message")
 def message(data):
+    channel = session['currentChannel']
     message = data['message']
-    print(message)
-    emit("announce message", {'message': message, 'author':session['name']}, broadcast=True)
+
+    if session.get(channel) is None:
+        #session[channel] =
+
+
+    emit("announce message", {'message': message, 'author': session['name']}, broadcast=True)
 
 
 if __name__ == '__main__':
