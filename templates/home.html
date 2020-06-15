@@ -38,6 +38,9 @@
                     <input class="list-group-item list-group-item-action" type="button" value="{{channel}}">
                 </a>
             {% endfor %}
+            {% if channels|length == 0 %}
+                <h4 class="font-weight-bold text-info m-5">No channels to display.</h4>
+            {% endif %}
         </div>
 
 
