@@ -14,6 +14,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 app.secret_key = 'asr'
 
+d = {}
+
 @app.route("/")
 def index():
     if 'name' in session:
@@ -23,7 +25,6 @@ def index():
 
 @app.route("/home", methods=["POST", "GET"])
 def home():
-    print(session)
     if session.get("success") is None:
         session['success'] = True;
 
@@ -32,11 +33,11 @@ def home():
             return render_template("home.html", name=session['name'], channels=session['channels'], success=session['success'])
     else:
         session['name'] = request.form.get("name")
-        return render_template("home.html", name=session['name'])
+        return render_template("home.html", name=session['name'], channels=session['channels'])
 
 @app.route("/logout")
 def logout():
-    session.clear()
+    session.pop('name')
     return redirect(url_for('index'))
 
 @app.route("/addChannel", methods=["POST"])
@@ -53,24 +54,17 @@ def addChannel():
         session['success'] = False
 
     elif channelName != "" and channelName not in channels:
-        # if request.method == "POST":
         channels.append(channelName)
         session['channels'] = channels
 
     return redirect(url_for('home'))
 
-#d = deque([], 100)
 @app.route("/channel/<string:channel>", methods=["GET", "POST"])
 def channel(channel):
-    if session.get(channel) is None:
-        print(f"There was no channel named {channel}")
-        print(f"New empty channel created with name {channel}")
-        session[channel] = []
 
     session['currentChannel'] = channel
 
-    messages = session.get(channel)
-    print(f"Messages: {messages}")
+    messages = d.get(channel, [])
 
     return render_template('channel.html', channel=channel, messages=messages)
 
@@ -79,13 +73,12 @@ def message(data):
     channel = session['currentChannel']
     message = data['message']
     time = datetime.datetime.now().strftime("%x-%X")
-    # if session.get(channel) is None:
-    #     session[channel] = []
 
-    messages = session[channel]
-    messages.append({'message': message, 'author': session['name'], 'time': time})
-    session[channel] = messages
-    print(session)
+    if channel not in d.keys():
+        d[channel] = [{'message': message, 'author': session['name'], 'time': time}]
+    else:
+        d[channel].append({'message': message, 'author': session['name'], 'time': time})
+
     emit("announce message", {'message': message, 'author': session['name'], 'time': time}, broadcast=True)
 
 
