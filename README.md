@@ -26,3 +26,5 @@ This file handles the client-side of the function that allows the user to create
 This file contains the socket.io code for sending and receiving new messages. When a message is sent, it emmits the message to the backend. When the message is broadcasted back to the frontend, it adds it to the messages list shown onscreen. If this list exceeds the limit of 100 messages, the old messages are removed as new messages are sent/received.
 Finally, we find a function that makes the message form to submit when the return key is pressed.
 
+### Personal touch
+As a personal touch, I designed the webpage in kind of a dark mode, taking advanage of many bootstrap functionalities. Also, I allowed the users to delete channels, as well as making sure that there are no channels with empty or repeated names.
