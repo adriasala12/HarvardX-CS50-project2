@@ -17,15 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When a new message is announced modify html
     socket.on('announce message', data => {
-        const ul = document.getElementById('chat');
-        const li = document.createElement('li');
-        li.style = "color: white"
-        li.innerHTML = `(${data.time}) ${data.author}: ${data.message}`;
-        document.getElementById('chat').appendChild(li);
 
-        const lis = document.getElementsByTagName('li')
-        if (lis.length > 100) {
-            lis[0].remove()
+        var channel = document.getElementById('name').innerHTML
+        if (data.channel == channel) {
+            const ul = document.getElementById('chat');
+            const li = document.createElement('li');
+            li.style = "color: white"
+            li.innerHTML = `(${data.time}) ${data.author}: ${data.message}`;
+            document.getElementById('chat').appendChild(li);
+
+            const lis = document.getElementsByTagName('li')
+            if (lis.length > 100) {
+                lis[0].remove()
+            }
         }
     });
 

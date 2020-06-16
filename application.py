@@ -83,7 +83,7 @@ def message(data):
     else:
         d[channel].append({'message': message, 'author': session['name'], 'time': time})
 
-    emit("announce message", {'message': message, 'author': session['name'], 'time': time}, broadcast=True)
+    emit("announce message", {'channel': channel, 'message': message, 'author': session['name'], 'time': time}, broadcast=True)
 
 @app.route("/removeChannel/<string:channel>")
 def removeChannel(channel):
